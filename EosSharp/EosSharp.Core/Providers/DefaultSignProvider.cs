@@ -110,11 +110,8 @@ namespace EosSharp.Core.Providers
             return Task.FromResult(availableAndReqKeys.Select(key =>
             {
                 
-                Console.WriteLine("DefaultSignProvider d: "+Org.BouncyCastle.Utilities.Encoders.Hex.ToHexString(Keys[key]));
-                Console.WriteLine("DefaultSignProvider d2: "+new BigInteger(1,Keys[key]).ToString());
                 var sign = Secp256K1Manager.SignCompressedCompact(hash, Keys[key]);
                 
-                Console.WriteLine("DefaultSignProvider: "+Org.BouncyCastle.Utilities.Encoders.Hex.ToHexString(sign));
 
                 var check = new List<byte[]>() { sign, Encoding.UTF8.GetBytes("K1") };
                 var checksum = Ripemd160Manager.GetHash(SerializationHelper.Combine(check)).Take(4).ToArray();
