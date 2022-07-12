@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net471</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BouncyCastle.NetCore" Version="1.9.0" />
+        <PackageReference Include="Cryptography.ECDSA.Secp256K1" Version="1.1.3" />
+        <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+        <PackageReference Include="MSTest.TestAdapter" Version="2.2.10" />
+        <PackageReference Include="MSTest.TestFramework" Version="2.2.10" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="NUnit" Version="3.13.3" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+        <PackageReference Include="NUnit.Analyzers" Version="3.3.0" />
+        <PackageReference Include="coverlet.collector" Version="3.1.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\EosSharp.Core\EosSharp.Core.csproj" />
+      <ProjectReference Include="..\EosSharp.UnitTests.Core\EosSharp.UnitTests.Core.csproj" />
+      <ProjectReference Include="..\EosSharp\EosSharp.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="EosUnitTests.tt">
+        <Generator>TextTemplatingFileGenerator</Generator>
+        <LastGenOutput>EosUnitTests.cs</LastGenOutput>
+      </None>
+      <None Update="ApiUnitTests.tt">
+        <Generator>TextTemplatingFileGenerator</Generator>
+        <LastGenOutput>ApiUnitTests.cs</LastGenOutput>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="EosUnitTests.cs">
+        <DependentUpon>EosUnitTests.tt</DependentUpon>
+      </Compile>
+      <Compile Update="ApiUnitTests.cs">
+        <DependentUpon>ApiUnitTests.tt</DependentUpon>
+      </Compile>
+      <Compile Remove="UnitTest1.cs" />
+      <Compile Remove="Usings.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="BouncyCastle">
+        <HintPath>..\..\..\bccrypto-csharp-1.9.0 3\crypto\bin\Release\lib\net20\BouncyCastle.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>
